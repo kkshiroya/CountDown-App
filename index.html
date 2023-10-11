@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <div id="countdown"></div>
+    <script>
+        const targetDate = new Date('2023-12-31 23:59:59').getTime();
+        function updateCountdown() {
+            const currentDate = new Date().getTime();
+            const timeLeft = targetDate - currentDate;
+            if (timeLeft <= 0) {
+                document.getElementById('countdown').innerHTML = 'Countdown expired!';
+            } else {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                const countdownString = `${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds`;
+                document.getElementById('countdown').innerHTML = countdownString;
+            }
+        }
+        setInterval(updateCountdown, 100);
+        updateCountdown();
+    </script>
+</body>
+</html>
